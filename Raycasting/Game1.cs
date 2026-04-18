@@ -5,6 +5,7 @@ using System;
 
 namespace Raycasting
 {
+    // Struct to hold information about each vertical line to be drawn
     public struct VerticalLine
     {
         public int Start;
@@ -318,6 +319,7 @@ namespace Raycasting
 
             if (keyboard.IsKeyDown(Keys.Up))
             {
+                // Check for wall collision in the direction of movement
                 row = (int)(pos.X + dir.X * moveSpeed);
                 col = (int)(pos.Y);
 
@@ -333,6 +335,7 @@ namespace Raycasting
 
             if (keyboard.IsKeyDown(Keys.Down))
             {
+                // Check for wall collision in the opposite direction of movement
                 row = (int)(pos.X - dir.X * moveSpeed);
                 col = (int)(pos.Y);
 
@@ -354,22 +357,28 @@ namespace Raycasting
 
             if (keyboard.IsKeyDown(Keys.Right))
             {
+                // Rotate the direction vector
                 float oldDirX = dir.X;
+
                 dir.X = dir.X * (float)Math.Cos(-rotationSpeed) - dir.Y * (float)Math.Sin(-rotationSpeed);
                 dir.Y = oldDirX * (float)Math.Sin(-rotationSpeed) + dir.Y * (float)Math.Cos(-rotationSpeed);
 
+                // Rotate the camera plane
                 float oldPlaneX = plane.X;
+
                 plane.X = plane.X * (float)Math.Cos(-rotationSpeed) - plane.Y * (float)Math.Sin(-rotationSpeed);
                 plane.Y = oldPlaneX * (float)Math.Sin(-rotationSpeed) + plane.Y * (float)Math.Cos(-rotationSpeed);
             }
 
             if (keyboard.IsKeyDown(Keys.Left))
             {
+                // Rotate the direction vector
                 float oldDirX = dir.X;
 
                 dir.X = dir.X * (float)Math.Cos(rotationSpeed) - dir.Y * (float)Math.Sin(rotationSpeed);
                 dir.Y = oldDirX * (float)Math.Sin(rotationSpeed) + dir.Y * (float)Math.Cos(rotationSpeed);
 
+                // Rotate the camera plane
                 float oldPlaneX = plane.X;
 
                 plane.X = plane.X * (float)Math.Cos(rotationSpeed) - plane.Y * (float)Math.Sin(rotationSpeed);
